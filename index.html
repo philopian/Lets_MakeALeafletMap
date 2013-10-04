@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet Quick Start Guide Example</title>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="./leaflet-0.6.4/leaflet.js"></script>
+	<link rel="stylesheet" href="./leaflet-0.6.4/leaflet.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="../leaflet-0.6.4/leaflet.ie.css" /><![endif]-->
+
+	<style type="text/css">
+		#map{
+			border-color: blue;
+			border-style: solid;
+			border-width: 1px;
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="map" style="width: 600px; height: 400px"></div>
+
+
+	<script>
+
+		/*** add th map ***/
+		var map = L.map('map').setView([45.5200, -122.6819], 13);
+
+		// http://a.tiles.mapbox.com/v3/philopian.map-2mc3k4wi/page.html
+		// http:​/​/​c.tiles.mapbox.com/​v3/​philopian.map-2mc3k4wi/​9/​80/​174.png"
+
+		/*** Default map tiles ***/
+		L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map);
+
+		
+		/*** Custom map tiles from ***/
+		L.tileLayer('http:​/​/​{s}.tiles.mapbox.com/​v3/​philopian.map-2mc3k4wi/​9/​80/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map);
+
+
+
+
+
+
+		/*** Create marker array ***/
+		var myPoi = [{"lat":"51.000","lon":"-123.000","text":"first"},
+					 {"lat":"52.000","lon":"-123.010","text":"second"},
+					 {"lat":"52.000","lon":"-123.020","text":"third"}];
+
+		
+		/*** Create empty bounds marker array, will get populated when markers are added ***/	
+		var boundsArray = [];
+
+		/*** Create marker array ***/		 
+		for (i=0;i<myPoi.length;i++){
+			L.marker([myPoi[i].lat, myPoi[i].lon]).addTo(map).bindPopup(myPoi[i].text);
+			boundsArray.push([myPoi[i].lat, myPoi[i].lon]);
+		}
+
+
+
+
+
+		//dfdf
+		/*** Bounds marker array ***/	
+		map.fitBounds(boundsArray);
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
